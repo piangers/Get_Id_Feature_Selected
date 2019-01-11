@@ -42,16 +42,16 @@ class GetFeatureSelected:
             
             selectedId = layer.selectedFeaturesIds()
             print selectedId
-            expressao = '(',
+            expressao = '('
             for l in selectedId:
+
                 expressao = expressao+str(l)+','
-                expressao.replace(len(expressao)-1,')')
-               
-                
-               
-                
-                layer.setSubsetString('"id" IN %s'% expressao)
-                print layer.setSubsetString('"id" IN %s'% expressao)
+            
+            
+            expressao = expressao[:-1]   
+            expressao = expressao+')'     
+            layer.setSubsetString('"id" IN %s'% expressao)
+            print layer.setSubsetString('"id" IN %s'% expressao)
            
 
 
