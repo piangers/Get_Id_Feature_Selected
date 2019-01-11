@@ -42,16 +42,33 @@ class GetFeatureSelected:
             
             selectedId = layer.selectedFeaturesIds()
             print selectedId
-            
+            expressao = '(',
             for l in selectedId:
-                exp = ('"id" IN ('+str(l)+")")
-                print exp
-                print l
-            #request=QgsFeatureRequest().setFilterExpression(exp)
-            layer.setSubsetString('exp')
+                expressao = expressao+str(l)+','
+                expressao.replace(len(expressao)-1,')')
+               
+                
+               
+                
+                layer.setSubsetString('"id" IN %s'% expressao)
+                print layer.setSubsetString('"id" IN %s'% expressao)
+           
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+        #request=QgsFeatureRequest().setFilterExpression(exp)
         #featuresIterator = layer.dataProvider().getFeatures(QgsFeatureRequest().setFilterExpression ('"name" IN ('%s')'% selectedId)
         #expression = QgsExpression('"id" IN ()')
         #layer.setSubsetString(''"id" " IN"'\'%s\'' % selectedId)
+        # exp = ('"id" IN ('+str(l)+")")
